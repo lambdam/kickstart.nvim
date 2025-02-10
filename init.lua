@@ -675,7 +675,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = { c = true, cpp = true, julia = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
@@ -860,6 +860,34 @@ require('lazy').setup({
         callback = function() vim.treesitter.start() end,
       })
     end,
+    -- BEGIN dam custom code
+    {
+      'Olical/conjure',
+      ft = { 'clojure', 'fennel', 'python', 'julia' }, -- etc
+      lazy = true,
+      init = function()
+        -- Set configuration options here
+        -- Uncomment this to get verbose logging to help diagnose internal Conjure issues
+        -- This is VERY helpful when reporting an issue with the project
+        -- vim.g["conjure#debug"] = true
+      end,
+
+      -- Optional cmp-conjure integration
+      dependencies = { 'PaterJason/cmp-conjure' },
+    },
+    {
+      'PaterJason/cmp-conjure',
+      lazy = true,
+      config = function()
+        local cmp = require 'cmp'
+        local config = cmp.get_config()
+        table.insert(config.sources, { name = 'conjure' })
+        return cmp.setup(config)
+      end,
+    },
+    { 'UtkarshVerma/molokai.nvim' },
+    { 'RRethy/base16-nvim' },
+    -- END dam custom code
   },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
