@@ -220,6 +220,24 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- BEGIN dam custom code
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'json',
+  callback = function()
+    vim.opt_local.expandtab = true
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+  end,
+})
+
+-- Neovide configuration
+if vim.g.neovide then
+  vim.g.neovide_cursor_animation_length = 0.1 -- default 0.15
+  vim.g.neovide_scroll_animation_length = 0.1 -- default 0.3
+  vim.g.neovide_cursor_trail_size = 0.5 -- default 1
+end
+-- END dam custom code
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -945,7 +963,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'fennel' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'fennel', 'rust' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -997,6 +1015,10 @@ require('lazy').setup({
       config = true,
       -- use opts = {} for passing setup options
       -- this is equivalent to setup({}) function
+    },
+    {
+      'olimorris/onedarkpro.nvim',
+      -- priority = 1000, -- Ensure it loads first
     },
     -- END dam custom code
   },
