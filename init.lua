@@ -916,6 +916,15 @@ require('lazy').setup({
       'olimorris/onedarkpro.nvim',
       -- priority = 1000, -- Ensure it loads first
     },
+    {
+      'tanvirtin/vgit.nvim',
+      dependencies = { 'nvim-lua/plenary.nvim', 'nvim-tree/nvim-web-devicons' },
+      -- Lazy loading on 'VimEnter' event is necessary.
+      event = 'VimEnter',
+      config = function()
+        require('vgit').setup()
+      end,
+    },
     -- END dam custom code
   },
 
