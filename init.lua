@@ -932,6 +932,10 @@ require('lazy').setup({
         require('vgit').setup()
       end,
     },
+    {
+      'terrastruct/d2-vim',
+      ft = { 'd2' },
+    },
     -- END dam custom code
   },
 
