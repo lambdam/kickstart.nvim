@@ -84,6 +84,20 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
+-- START Dam custom code
+---[[ Add or remove one dash to toggle the block comment
+local startup_t1 = vim.uv.hrtime()  -- use vim.loop.hrtime() on Neovim < 0.10
+
+vim.api.nvim_create_autocmd("UIEnter", {
+  callback = function()
+    local ms = (vim.uv.hrtime() - startup_t1) / 1e6
+    vim.api.nvim_echo({ { string.format("Loaded in %.1f ms", ms) } }, true, {})
+    --                                                                ^^^^ true = add to :messages history
+  end,
+})
+--]]
+-- END Dam custom code
+
 -- ============================================================
 -- SECTION 1: OPTIONS
 -- Core Neovim settings, leaders, options
