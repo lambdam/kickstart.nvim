@@ -42,6 +42,18 @@ if vim.fn.executable('rust-analyzer') == 0 then
   )
 end
 
+vim.g.rustaceanvim = {
+  server = {
+    default_settings = {
+      ['rust-analyzer'] = {
+        cargo = {
+          targetDir = true, -- → target/rust-analyzer
+        },
+      },
+    },
+  },
+}
+
 vim.pack.add {{
   src = 'https://github.com/mrcjkb/rustaceanvim',
   -- To avoid being surprised by breaking changes,
