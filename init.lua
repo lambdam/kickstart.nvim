@@ -446,22 +446,18 @@ do
   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
   vim.pack.add { gh 'folke/tokyonight.nvim' }
   ---@diagnostic disable-next-line: missing-fields
-  -- require('tokyonight').setup {
-  --   styles = {
-  --     comments = { italic = false }, -- Disable italics in comments
-  --   },
-  -- }
+  require('tokyonight').setup {
+    styles = {
+      comments = { italic = false }, -- Disable italics in comments
+    },
+  }
 
-  -- vim.pack.add { gh 'RRethy/base16-nvim' }
-  vim.pack.add { gh 'navarasu/onedark.nvim' }
-  -- vim.pack.add { gh 'olimorris/onedarkpro.nvim' }
   -- vim.opt.termguicolors = true
 
   -- Load the colorscheme here.
   -- Like many other themes, this one has different styles, and you could load
   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  require('onedark').setup { style = 'light' }
-  vim.cmd.colorscheme 'onedark'
+  vim.cmd.colorscheme 'tokyonight-night'
 
   -- Highlight todo, notes, etc in comments
   vim.pack.add { gh 'folke/todo-comments.nvim' }
